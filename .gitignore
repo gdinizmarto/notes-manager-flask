@@ -1,0 +1,4 @@
+__pycache__
+*.txt
+!/notes/sample1.txt
+!/notes/sample2.txt

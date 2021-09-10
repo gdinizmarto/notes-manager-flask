@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+
+
+<html>
+    <head>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+        <style>
+            form {
+                display: flex;
+                width: 100%;
+            }
+
+            form > input {
+
+                width: 100%;
+            }
+
+            a {
+                text-decoration: none;
+                color: black;
+            }
+            a:hover {
+                color: black;
+                text-decoration: underline;
+            }
+            #content {
+                display: block;
+                width: 80%;
+                margin-left: auto;
+                margin-right: auto;
+                padding: 50px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="content">
+            <form action="{{ url_for('save_note') }}" method="POST">
+                <input type="text" name="title">
+                <button type="submit" id="add">+</button>
+            </form>
+            
+            <ul>
+                {% for file in files %}
+                <li>
+                    <a href="{{ (request.path + '/' if request.path != '/' else '') + file }}">
+                        {{ (request.path + '/' if request.path != '/' else '') + file.replace('.txt','') }}
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </body>
+</html>
+
+<!-- <script src="bundle.js"></script> -->
