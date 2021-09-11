@@ -33,6 +33,11 @@ a:hover {
   margin-right: auto;
   padding-top: 50px;
 }
+@media (max-width: 450px) {
+  #content {
+    width: 100%;
+  }
+}
 
 .add {
   border: 0;

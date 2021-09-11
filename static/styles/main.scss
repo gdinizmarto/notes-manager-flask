@@ -33,6 +33,10 @@ a {
     margin-left: auto;
     margin-right: auto;
     padding-top: 50px;
+
+    @media (max-width:450px){
+        width: 100%;
+    }
 }
 
 .add {
