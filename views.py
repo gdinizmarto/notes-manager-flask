@@ -21,8 +21,6 @@ def save_note():
         open(f'./notes/{str(title)}.txt','w').write('')
     return redirect("/")
 
-
-
 @app.route('/', defaults={'req_path': ''})
 @app.route('/<path:req_path>')
 def dir_listing(req_path):
