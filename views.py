@@ -45,4 +45,4 @@ def dir_listing(req_path):
     files = os.listdir(abs_path)
     return render_template('index.html', files=files)
 
-app.run(host="192.168.18.13",port=1024)#,debug=False)
+app.run(host="0.0.0.0",port=1024,debug=True)
