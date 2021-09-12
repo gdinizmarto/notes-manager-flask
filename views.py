@@ -10,7 +10,8 @@ app = Flask(__name__)
 
 @app.route('/',methods=["POST","GET"])
 def main():
-    files = [file.replace('.txt','') for file in os.listdir('./notes')]
+    #files = [file.replace('.txt','') for file in os.listdir('./notes')]
+    files = [file[:-4] for file in os.listdir('./notes')]
     return render_template("index.html",files=files)
 
 @app.route('/create_note',methods=["POST"])
