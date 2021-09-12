@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="/static/styles/main.css">
+        <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
+    </head>
+    <body>
+        <div id="note-content" contenteditable="true" name="{{ note_name }}" autofocus="true">
+            <!-- {{ request.path }} -->
+            <!-- {{ note_content }} -->
+            <!-- <p placeholder="Write something..."></p> -->
+        </div>
+    </body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script>
+        // alert(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent));
+
+        document.getElementById("note-content").addEventListener("input",sync_note,false);
+        $(document).ready(get_note_content)
+        $(document).ready(function(){
+            document.getElementById('note-content').focus();
+        })
+        // document.onload(get_note_content);
+
+        // var intervalId = window.setInterval(get_note_content, 1000);
+        
+        function sync_note() {
+            var mobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
+            $.ajax({
+                type: "POST",
+                url: "{{ url_for('sync_note') }}",
+                data: {'name': $('#note-content').attr('name'),'content': $('#note-content').html(),'mobile':mobile},
+
+                success: function(response) {
+                    console.log($('#note-content').html())
+                    console.log($('#note-content').text())
+                    console.log('Document is up to date')
+
+                },
+                error: function(rs, e) {
+                    alert(rs.responseText);
+                }
+            });
+        };
+
+        function get_note_content(){
+            $.ajax({
+                type: "POST",
+                url: "{{ url_for('get_note_content') }}",
+                data: {'name': $('#note-content').attr('name')},
+
+                success: function(response) {
+                    // console.log(response)
+                    // var note_content = JSON.parse(response['note_content']);
+                    var note_content = response['note_content'];
+                    console.log(note_content)
+
+                    $('#note-content').html(note_content)
+
+                },
+                error: function(rs, e) {
+                    alert(rs.responseText);
+                }
+            });
+        }
+
+        // setInterval(function(){
+        //     get_note_content() // this will run after every 5 seconds
+        // }, 1000);
+
+        
+    </script>
+</html>

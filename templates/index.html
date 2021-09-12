@@ -22,8 +22,8 @@
     </head>
     <body>
         <div id="content">
-            <form class="add-bar" action="{{ url_for('save_note') }}" method="POST">
-                <input type="text" name="title" placeholder="Create a new note..." autofocus>
+            <form class="add-bar" action="{{ url_for('create_note') }}" method="POST">
+                <input type="text" name="note_name" placeholder="Create a new note..." autofocus>
                 <button type="submit" class="add"><i class="fa fa-plus"></i></button>
             </form>
             
@@ -38,7 +38,7 @@
                     {% for file in files %}
                     <li>
                         <a href="{{ (request.path + '/' if request.path != '/' else '') + file }}">
-                            {{ (request.path + '/' if request.path != '/' else '') + file.replace('.txt','') }}
+                            {{ (request.path + '/' if request.path != '/' else '') + file }}
                         </a>
                     </li>
                     {% endfor %}
