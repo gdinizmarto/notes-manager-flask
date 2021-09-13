@@ -38,6 +38,7 @@ def br2n(html: str, mobile: bool = False) -> str:
         n = n.replace(prev,new)
     
     if mobile:
+        n = n.lstrip('<div>')
         n = n.replace('<div>','\n')
 
     n = re.sub('<div>|</div>|<br>','',n)
