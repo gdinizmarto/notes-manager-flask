@@ -5,6 +5,7 @@ html {
 body {
   margin: 0;
   height: 100%;
+  background: url(/static/img/old.png);
 }
 
 .add-bar {
@@ -85,6 +86,7 @@ a:hover {
   width: 100%;
   height: 100%;
   white-space: pre-wrap;
+  background: url(/static/img/old.png);
 }
 #note-content > div {
   white-space: pre-wrap;
